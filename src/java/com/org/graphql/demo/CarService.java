@@ -17,7 +17,7 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    @GraphQLQuery(name = "cars")
+        @GraphQLQuery(name = "cars")
     public List<Car> getCars(){
         return carRepository.findAll();
     }
@@ -44,5 +44,4 @@ public class CarService {
                 !car.getName().equals("Ford Pinto") &&
                 !car.getName().equals("Yugo GV");
     }
-
 }

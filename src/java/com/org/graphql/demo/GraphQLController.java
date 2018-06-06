@@ -1,6 +1,7 @@
 package com.org.graphql.demo;
 
 import graphql.GraphQL;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * Created by deepakvalechha on 05/06/18.
  */
-@RestController
+@Controller
 public class GraphQLController {
 
     private final GraphQL graphQL;
@@ -31,7 +32,7 @@ public class GraphQLController {
                 .withResolverBuilders(
                         //Resolve by annotations
                         new AnnotatedResolverBuilder())
-                .withOperationsFromSingleton(carService)
+                .withOperationsFromSingleton(carService, CarService.class)
                 .withValueMapperFactory(new JacksonValueMapperFactory())
                 .generate();
         graphQL = GraphQL.newGraphQL(schema).build();
